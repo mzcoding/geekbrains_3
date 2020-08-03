@@ -8,14 +8,21 @@ class NewsController extends Controller
 {
     public function index()
 	{
-		 $id = mt_rand(1, 1000);
-		 $route = route('news.show', ['id' => $id]);
-		 return "Это главная страница новостей! Открыть новость: <a href='".$route."'>".
-			 $route."</a>";
+		 return view('news.index', [
+		 	 'newsList'   => $this->news,
+			 'categories' => $this->categories
+		 ]);
 	}
 
 	public function show(int $id)
 	{
-		 return "Это новость с #ID= " . $id;
+		 $news = $this->news[$id-1] ?? [];
+		 if(empty($news)) {
+		 	 abort(404, 'News not found');
+		 }
+		 return view('news.show', [
+		 	 'news'       => $news,
+			 'categories' => $this->categories
+		 ]);
 	}
 }

@@ -7,23 +7,7 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-	protected  $news = [
-		[
-			'id' => 1,
-			'title' => 'Новость номер 1',
-			'text'  => 'Описание новости номер 1'
- 		],
-		[
-			'id' => 2,
-			'title' => 'Новость номер 2',
-			'text'  => 'Описание новости номер 2'
-		],
-		[
-			'id' => 3,
-			'title' => 'Новость номер 3',
-			'text'  => 'Описание новости номер 3'
-		],
-	];
+
 	public function index()
 	{
 		//return response()->json($this->news);

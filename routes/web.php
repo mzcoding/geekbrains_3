@@ -30,3 +30,7 @@ Route::group(['prefix' => 'admin'], function() {
 	 ->where('id', '\d+')
 	 ->name('admin.news.edit');
 });
+
+
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
