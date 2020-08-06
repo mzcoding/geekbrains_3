@@ -26,6 +26,8 @@ Route::group(['prefix' => 'admin'], function() {
 	  ->name('admin.news');
   Route::get('/news/create', 'Admin\NewsController@create')
 	  ->name('admin.news.create');
+  Route::post('/news/store', 'Admin\NewsController@store')
+	  ->name('admin.news.store');
   Route::get('/news/{id}/edit', 'Admin\NewsController@edit')
 	 ->where('id', '\d+')
 	 ->name('admin.news.edit');
