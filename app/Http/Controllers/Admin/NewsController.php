@@ -63,6 +63,5 @@ class NewsController extends Controller
 		$file =  file_get_contents(storage_path('app/news.txt'));
 		$data = json_decode($file, true);
 		return response()->json($data);
-
 	}
 }
