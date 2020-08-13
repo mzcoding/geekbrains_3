@@ -9,7 +9,7 @@ class NewsController extends Controller
 {
     public function index()
 	{
-		 $news = (new News())->getAll();
+		 $news = News::paginate(5);
 		 return view('news.index', [
 		 	 'newsList'   => $news
 		 ]);
@@ -17,7 +17,7 @@ class NewsController extends Controller
 
 	public function show(int $id)
 	{
-		 $news = (new News())->getById($id);
+		 $news = News::find($id);
 		 if(empty($news)) {
 		 	 abort(404, 'News not found');
 		 }

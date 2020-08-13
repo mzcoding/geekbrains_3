@@ -1,20 +1,19 @@
 @extends('layouts.app')
 @section('content')
 <div>
-    <a href="<?=route('admin.news.create')?>">Добавить новость</a>
+    <a href="{{ route('news.create') }}">Добавить новость</a>
     <br>
-    <a href="<?=route('admin')?>">В админку</a>
+    <a href="{{ route('admin') }}">В админку</a>
 </div>
 <br>
 @if(session()->has('success'))
      <strong>{{ session()->get('success') }}</strong>
 @endif
 <div class="col-md-4 offset-2">
-   @isset($n['title']) @endisset
-    @forelse($news as $n)
+    @forelse($newsList as $news)
         <div>
-             <h2><a href=" {{ route('admin.news.edit', ['id' => $n['id']]) }}">{{ $n['title'] }}</a></h2>
-             <p>{{ $n['text'] }}</p>
+             <p><a href=" {{ route('news.edit', ['news' => $news]) }}">{{ $news->title }}</a></p>
+              <br>
         </div>
      @empty
         <h2>Новостей нет</h2>

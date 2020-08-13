@@ -6,7 +6,7 @@
 
    @forelse($newsList as $news)
     <div class="blog-post">
-        <h2 class="blog-post-title"><a href="{{ route('news.show', ['id' => $news->id]) }}">{{ $news->title }}</a></h2>
+        <h2 class="blog-post-title"><a href="{{ route('news', ['id' => $news->id]) }}">{{ $news->title }}</a></h2>
         <p class="blog-post-meta">December 23, 2013 by <a href="#">Jacob</a></p>
         <p>{!! mb_substr($news->description, 0, 200) !!}</p>
     </div><!-- /.blog-post -->
@@ -16,8 +16,7 @@
 
 
     <nav class="blog-pagination">
-        <a class="btn btn-outline-primary" href="#">Older</a>
-        <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
+        {{ $newsList->links() }}
     </nav>
 
 @stop
