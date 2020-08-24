@@ -40,6 +40,7 @@ class NewsController extends Controller
     public function store(NewsCreateRequest $request)
     {
     	$data = $request->validated();
+
     	if (!$data['slug']) {
 				$data['slug'] = Str::slug($data['title'], "-");
     	}

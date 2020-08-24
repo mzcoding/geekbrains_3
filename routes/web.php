@@ -24,13 +24,16 @@ Route::get('/news/{id}.html', 'NewsController@show')
 	->name('news');
 
 //for admin
-Route::group(['prefix' => 'admin'], function() {
-  Route::get('/', 'Admin\IndexController@index')
-	   ->name('admin');
-  //news
-  Route::resource('/news', 'Admin\NewsController');
-});
+Route::group(['middleware' => 'auth'], function() {
+	Route::get('/account', 'Account\IndexController@index')->name('account');
 
+	Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
+		Route::get('/', 'Admin\IndexController@index')
+			->name('admin');
+		//news
+		Route::resource('/news', 'Admin\NewsController');
+	});
+});
 
 
 Auth::routes();
@@ -46,3 +49,9 @@ Route::get('/collections', function() {
 
 	$collection->dd(1);
 });
+
+Route::get('/parsing/news', 'ParserController@index')->name('news.parser');
+
+//auth socialite
+Route::get('/auth/vk', 'Auth\SocialController@loginVK')->name('vk.login');
+Route::get('/auth/vk/callback', 'Auth\SocialController@callbackVK')->name('vk.callback');
